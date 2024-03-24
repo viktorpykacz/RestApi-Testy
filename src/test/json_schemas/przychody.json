@@ -1,0 +1,11 @@
+{
+  "id": 0,
+  "dataWystawieniaFaktury": "string",
+  "terminPlatnosci": "string",
+  "numerFaktury": "string",
+  "nipKlienta": "string",
+  "opisFaktury": "string",
+  "wartoscNetto": 0,
+  "wartoscVat": 0,
+  "wartoscBrutto": 0
+}
