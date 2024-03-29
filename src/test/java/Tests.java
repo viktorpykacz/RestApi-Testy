@@ -227,6 +227,12 @@ public class Tests extends TestListenerAdapter {
                 .statusCode(200);
     }
 
+    /*TODO - add method to clean up the database from requests created by tests
+    test
+
+
+     */
+
 
 
 
