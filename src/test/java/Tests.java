@@ -53,22 +53,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     @Test(groups={"Przychody"})
-    public void Test_Add_Przychod()
-    {
-        System.out.println("Starting_Test_Add_Przychod");
-        Map<String, String> Przychod = new HashMap<>();
-        Przychod.put("dataWystawieniaFaktury","31.01.2024");
-        Przychod.put("terminPlatnosci","07.02.2024");
-        Przychod.put("numerFaktury","FV_TESTOWA_AUTOMAT");
-        Przychod.put("nipKlienta","1132800777");
-        Przychod.put("opisFaktury","TESTOWY PRZYCHOD AUTOMAT TWORZENIE");
-        Przychod.put("wartoscNetto","10000");
-        Przychod.put("wartoscVat","2300");
-        Przychod.put("wartoscBrutto","12300");
-        System.out.println("Finishing_Test_Add_Przychod");
-    }
-
-    @Test(groups={"Przychody"})
     public void Test_Add_And_Delete_Przychod()
     {
         System.out.println("Test_Add_And_Delete_Przychod");
@@ -158,11 +142,86 @@ public class Tests extends TestListenerAdapter {
                 .statusCode(200);
     }
 
-    /*TODO
-    Test add koszty
-    Test add and delete koszty
-    Test add and update koszty
-     */
+    @Test(groups = {"Koszty"})
+    public void Test_Add_And_Delete_Koszt()
+    {
+        System.out.println("Starting_Test_Add_And_Delete_Koszt");
+        Map<String, String> Koszt = new HashMap<>();
+        Koszt.put("dataWystawieniaFaktury", "05.01.2024");
+        Koszt.put("numerFaktury", "05.01.2024");
+        Koszt.put("nipFirmy", "1139928365");
+        Koszt.put("opisKosztu", "TESTOWY KOSZT AUTOMAT TWORZENIE");
+        Koszt.put("rodzajKosztu", "AUTO");
+        Koszt.put("wartoscNetto", "1000");
+        Koszt.put("wartoscVat", "230");
+        Koszt.put("wartoscBrutto", "1230");
+
+        int IdKoszt = given()
+                .contentType("application/json")
+                .body(Koszt)
+                .when()
+                .post("/koszty")
+                .then()
+                .statusCode(201)
+                .extract().path("id");
+        System.out.println("Testowy koszt dodany="+IdKoszt);
+
+        given()
+                .pathParam("id", IdKoszt)
+                .when().delete("/koszty/{id}")
+                .then()
+                .statusCode(204);
+        System.out.println("Testowy koszt "+IdKoszt + " usuniety");
+        System.out.println("Finishing_Test_Add_And_Delete_Koszt");
+    }
+
+    @Test(groups = {"Koszty"})
+    public void Test_Add_And_Update_Koszt()
+    {
+        System.out.println("Starting_Test_Add_And_Update_Koszt");
+        Map<String, String> Koszt = new HashMap<>();
+        Koszt.put("dataWystawieniaFaktury", "06.01.2024");
+        Koszt.put("numerFaktury", "09.01.2024");
+        Koszt.put("nipFirmy", "1139928365");
+        Koszt.put("opisKosztu", "TESTOWY KOSZT AUTOMAT TWORZENIE");
+        Koszt.put("rodzajKosztu", "AUTO");
+        Koszt.put("wartoscNetto", "1000");
+        Koszt.put("wartoscVat", "230");
+        Koszt.put("wartoscBrutto", "1230");
+
+        int IdKoszt = given()
+                .contentType("application/json")
+                .body(Koszt)
+                .when()
+                .post("/koszty")
+                .then()
+                .statusCode(201)
+                .extract().path("id");
+        System.out.println("Testowy koszt dodany="+IdKoszt);
+
+        Map<String, String> KosztUpdated = new HashMap<>();
+
+        KosztUpdated.put("id", Integer.toString(IdKoszt));
+        KosztUpdated.put("dataWystawieniaFaktury", "05.01.2024");
+        KosztUpdated.put("numerFaktury", "05.01.2024");
+        KosztUpdated.put("nipFirmy", "1139928365");
+        KosztUpdated.put("opisKosztu", "TESTOWY KOSZT AUTOMAT TWORZENIE_UPDATED");
+        KosztUpdated.put("rodzajKosztu", "AUTO");
+        KosztUpdated.put("wartoscNetto", "5000");
+        KosztUpdated.put("wartoscVat", "555");
+        KosztUpdated.put("wartoscBrutto", "5555");
+
+        given()
+                .contentType("application/json")
+                .body(KosztUpdated)
+                .when()
+                .put("/przychody/"+IdKoszt)
+                .then()
+                .statusCode(204);
+
+        System.out.println("Testowy koszt "+IdKoszt + " usuniety");
+        System.out.println("Finishing_Test_Add_And_Delete_Koszt");
+    }
 
     @Test(groups={"GodzinyPracy"})
     public void HealthCheck_GodzinyPracy_200_OK()
@@ -175,7 +234,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     /*TODO
-    Test add GodzinyPracy
     Test add and delete GodzinyPracy
     Test add and update GodzinyPracy
      */
@@ -191,7 +249,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     /*TODO
-    Test add Kontrakty
     Test add and delete Kontrakty
     Test add and update Kontrakty
      */
@@ -207,7 +264,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     /*TODO
-    Test add ZestawienieGodzinyPracy
     Test add and delete ZestawienieGodzinyPracy
     Test add and update ZestawienieGodzinyPracy
      */
@@ -223,7 +279,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     /*TODO
-    Test add ZestawienieMiesieczneFirmy
     Test add and delete ZestawienieMiesieczneFirmy
     Test add and update ZestawienieMiesieczneFirmy
      */
@@ -239,7 +294,6 @@ public class Tests extends TestListenerAdapter {
     }
 
     /*TODO
-    Test add podatki
     Test add and delete podatki
     Test add and update podatki
      */
