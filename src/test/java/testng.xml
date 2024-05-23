@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="RunAllTests">
+    <test name="GodzinyPracyTests">
+        <classes>
+            <class name="GodzinyPracyTests"></class>
+        </classes>
+    </test>
+    <test name="KontraktyTests">
+        <classes>
+            <class name="KontraktyTests"></class>
+        </classes>
+    </test>
+    <test name="KosztyTests">
+        <classes>
+            <class name="KosztyTests"></class>
+        </classes>
+    </test>
+    <test name="PodatkiTests">
+        <classes>
+            <class name="PodatkiTests"></class>
+        </classes>
+    </test>
+    <test name="PrzychodyTests">
+        <classes>
+            <class name="PrzychodyTests"></class>
+        </classes>
+    </test>
+    <test name="ZestawienieGodzinPracyTests">
+        <classes>
+            <class name="ZestawienieGodzinPracyTests"></class>
+        </classes>
+    </test>
+    <test name="ZestawienieMiesieczneFirmyTests">
+        <classes>
+            <class name="ZestawienieMiesieczneFirmyTests"></class>
+        </classes>
+    </test>
+</suite>
